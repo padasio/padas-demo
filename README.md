@@ -1,5 +1,6 @@
 # padas-demo
 
+```
 padas-demo/
 ├── inventories/
 │   ├── production/
@@ -31,3 +32,5 @@ padas-demo/
 │   │   ├── tasks/
 │   │   ├── handlers/
 │   │   ├── vars/
+```
+

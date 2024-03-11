@@ -1,0 +1,10 @@
+- name: Start Padas UI service
+  debug:
+    msg: "Starting Padas UI service..."
+
+- name: Include variables from padas-ui role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Execute command to start Padas UI service    
+  command: "{{ padas_ui_path }}/bin/padas-ui start"

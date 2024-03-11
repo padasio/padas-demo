@@ -1,0 +1,12 @@
+- name: Start Padas Engine and Padas UI services
+  hosts: padas
+  tasks:
+    - name: Include start tasks for Padas Engine
+      include_role:
+        name: roles/padas-engine
+        tasks_from: start.yml
+
+    - name: Include start tasks for Padas UI
+      include_role:
+        name: roles/padas-ui
+        tasks_from: start.yml

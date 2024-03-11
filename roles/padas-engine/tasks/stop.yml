@@ -1,0 +1,10 @@
+- name: Stop Padas Engine service
+  debug:
+    msg: "Stopping Padas Engine service..."
+
+- name: Include variables from padas-engine role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Execute command to stop Padas Engine service    
+  command: "{{ padas_engine_path }}/bin/padas stop"

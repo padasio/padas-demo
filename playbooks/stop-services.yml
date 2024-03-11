@@ -1,0 +1,12 @@
+- name: Stop Padas Engine and Padas UI services
+  hosts: padas
+  tasks:
+    - name: Include stop tasks for Padas Engine
+      include_role:
+        name: roles/padas-engine
+        tasks_from: stop.yml
+
+    - name: Include stop tasks for Padas UI
+      include_role:
+        name: roles/padas-ui
+        tasks_from: stop.yml

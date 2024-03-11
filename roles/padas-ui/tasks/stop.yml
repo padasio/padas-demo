@@ -1,0 +1,10 @@
+- name: Stop Padas UI service
+  debug:
+    msg: "Stopping Padas UI service..."
+
+- name: Include variables from padas-ui role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Execute command to start Padas UI service
+  command: "{{ padas_ui_path }}/bin/padas-ui stop"

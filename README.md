@@ -15,7 +15,9 @@
 │           ├── padas-engine.yml
 │           └── padas-ui.yml
 ├── playbooks
-│   └── getting-started.yml
+│   ├── getting-started.yml
+│   ├── start-services.yml
+│   └── stop-services.yml
 └── roles
     ├── common
     ├── kafka
@@ -25,10 +27,20 @@
     ├── padas-engine
     │   ├── handlers
     │   ├── tasks
+    │   │   ├── start.yml
+    │   │   └── stop.yml
     │   └── vars
+    │       └── all.yml
     └── padas-ui
         ├── handlers
         ├── tasks
+        │   ├── start.yml
+        │   └── stop.yml
         └── vars
+            └── all.yml
 ```
 
+Testing on localhost:
+
+ansible-playbook --connection=local -i inventories/production/group_vars/all.yml  playbooks/start-services.yml
+ansible-playbook --connection=local -i inventories/production/group_vars/all.yml  playbooks/stop-services.yml

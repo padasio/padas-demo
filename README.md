@@ -2,35 +2,25 @@
 
 ```
 padas-demo/
-├── inventories/
-│   ├── production/
-│   │   ├── group_vars/
-│   │   │   ├── all.yml
-│   │   │   ├── padas-engine.yml
-│   │   │   ├── padas-ui.yml
-│   │   │   ├── kafka.yml
-│   │   ├── host_vars/
-│   │   │   ├── padas-engine.yml
-│   │   │   ├── padas-ui.yml
-│   │   │   ├── kafka.yml
-├── playbooks/
-│   ├── getting-started.yml
-│   ├── padas-engine.yml
-│   ├── padas-ui.yml
-│   ├── kafka.yml
-├── roles/
-│   ├── common/
-│   ├── padas-engine/
-│   │   ├── tasks/
-│   │   ├── handlers/
-│   │   ├── vars/
-│   ├── padas-ui/
-│   │   ├── tasks/
-│   │   ├── handlers/
-│   │   ├── vars/
-│   ├── kafka/
-│   │   ├── tasks/
-│   │   ├── handlers/
-│   │   ├── vars/
+├── README.md
+├── inventories
+│   └── production
+│       ├── group_vars
+│       └── host_vars
+├── playbooks
+└── roles
+    ├── common
+    ├── kafka
+    │   ├── handlers
+    │   ├── tasks
+    │   └── vars
+    ├── padas-engine
+    │   ├── handlers
+    │   ├── tasks
+    │   └── vars
+    └── padas-ui
+        ├── handlers
+        ├── tasks
+        └── vars
 ```
 

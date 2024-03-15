@@ -1,0 +1,13 @@
+- name: Include variables from kafka role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Stopping Kafka Broker 
+  debug:
+    msg: "Stopping Kafka Broker..."
+  command: "{{ kafka_path }}/bin/kafka-server-stop etc/kafka/kraft/broker.properties"
+
+- name: Stop Kafka Controller 
+  debug:
+    msg: "Stopping Kafka Controller..."
+  command: "{{ kafka_path }}/bin/kafka-server-stop etc/kafka/kraft/controller.properties"

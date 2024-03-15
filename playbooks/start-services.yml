@@ -1,11 +1,22 @@
-- name: Start Padas Engine and Padas UI services
-  hosts: padas
+- name: Start Kafka Controller and Broker
+  hosts: kafka
+  tasks:
+    - name: Include start tasks for Kafka Controller and Broker
+      include_role:
+        name: roles/kafka
+        tasks_from: start.yml
+
+- name: Start Padas Engine services
+  hosts: padas-engine
   tasks:
     - name: Include start tasks for Padas Engine
       include_role:
         name: roles/padas-engine
         tasks_from: start.yml
 
+- name: Start Padas UI services
+  hosts: padas-ui
+  tasks:
     - name: Include start tasks for Padas UI
       include_role:
         name: roles/padas-ui

@@ -8,3 +8,20 @@
 
 - name: Execute command to start Padas UI service    
   command: "{{ padas_ui_path }}/bin/padas-ui start"
+
+- name: Wait for Padas UI to be ready
+  ansible.builtin.wait_for:
+    timeout: 3  # Adjust timeout as needed
+    host: padas-ui  # Adjust to the appropriate host where padas-engine is running
+    search_regex: "Padas UI is running."
+    state: started
+  retries: 3  # Number of retries
+  delay: 2  # Delay between retries in seconds
+  register: padas_ui_started
+
+- name: Display success message Padas UI is started
+  debug:
+    msg: |
+      Padas UI is started.
+      The playbook completed successfully.
+  when: padas_ui_started.state == 'started'

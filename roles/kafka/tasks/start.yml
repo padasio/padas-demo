@@ -21,10 +21,6 @@
   delegate_to: localhost
   register: kafka_controller
 
-#- name: Debug Kafka started status
-#  debug:
-#    var: kafka_started
-
 - name: Display success message if Kafka process is running
   debug:
     msg: "Kafka Controller is running."
@@ -48,18 +44,6 @@
     state: started
   delegate_to: localhost
   register: kafka_broker
-
-
-
-- name: Debug Kafka started status
-  debug:
-    var: kafka_broker_pid
-
-
-
-- name: Debug Kafka started status
-  debug:
-    var: kafka_broker
 
 - name: Display success message Kafka Broker is started
   debug:

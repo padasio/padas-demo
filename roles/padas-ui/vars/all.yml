@@ -1,1 +1,2 @@
 padas_ui_path: "/opt/padas-ui"
+ps_padas_ui: "padas-ui-server"

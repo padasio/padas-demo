@@ -1,0 +1,23 @@
+- name: Include variables from kafka role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Start Kafka Controller
+  debug:
+    msg: "Starting Kafka Controller..."
+
+- name: Execute command to start Kafka Controller
+  shell: "nohup {{ kafka_path }}/bin/kafka-server-start {{ kafka_path }}/etc/kafka/kraft/controller.properties > /dev/null 2>&1 &"
+
+- name: Wait for Kafka Controller process to start
+  ansible.builtin.shell: "jps -m | grep {{ jps_contoller }}" 
+  register: kafka_controller_status
+  retries: 3
+  delay: 10
+  until: kafka_controller_status.stdout.find(jps_contoller) != -1
+
+- name: Display success message if Kafka process is running
+  debug:
+    msg: |
+      Kafka Controller is started.
+      The task completed successfully.

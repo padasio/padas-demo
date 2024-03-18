@@ -1,0 +1,23 @@
+- name: Include variables from kafka role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Start Kafka Broker 
+  debug:
+    msg: "Starting Kafka Broker..."
+
+- name: Execute command to start Kafka Broker
+  shell: "nohup {{ kafka_path }}/bin/kafka-server-start {{ kafka_path }}/etc/kafka/kraft/broker.properties  > /dev/null 2>&1 &"
+
+- name: Wait for Kafka Broker process to start
+  ansible.builtin.shell: "jps -m | grep {{ jps_broker }}"
+  register: kafka_broker_status
+  retries: 3
+  delay: 10
+  until: kafka_broker_status.stdout.find(jps_broker) != -1
+
+- name: Display success message Kafka Broker is started
+  debug:
+    msg: |
+      Kafka Broker is started.
+      The task completed successfully.

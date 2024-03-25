@@ -1,0 +1,60 @@
+- name: Perform API call to create a topic 1 
+  uri:
+    url: "https://{{ groups['padas-engine'][0] }}:8999/api/topics"
+    method: POST
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ access_token }}"
+    body: |
+      {
+        "name": "test_input",
+        "numberOfPartitions": 1,
+        "replicationFactor": 1,
+        "options": {
+          "cleanup.policy": "delete"
+        }
+      }
+    body_format: json
+    validate_certs: no
+  register: api_response_1
+  failed_when: api_response.status not in [200, 201]
+
+- name: Display response
+  debug:
+    var: api_response_1
+
+- name: Display success message
+  debug:
+    msg: |
+      Topic: {{ api_response_1.json.name }} is created successfully.
+
+- name: Perform API call to create a topic 2 
+  uri:
+    url: "https://{{ groups['padas-engine'][0] }}:8999/api/topics"
+    method: POST
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ access_token }}"
+    body: |
+      {
+        "name": "test_output",
+        "numberOfPartitions": 1,
+        "replicationFactor": 1,
+        "options": {
+          "cleanup.policy": "delete"
+        }
+      }
+    body_format: json
+    validate_certs: no
+  register: api_response_2
+  failed_when: api_response.status not in [200, 201]
+  
+
+- name: Display response
+  debug:
+    var: api_response_2
+
+- name: Display success message
+  debug:
+    msg: |
+      Topic: {{ api_response_2.json.name }} is created successfully.

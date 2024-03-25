@@ -1,0 +1,27 @@
+- name: Perform API call to Padas Engine to get tokens
+  ansible.builtin.uri:
+    url: "https://{{ groups['padas-engine'][0] }}:8999/api/login"
+    method: POST
+    body_format: json
+    body: '{
+      "username" : "merihb",
+      "password" : "admin123"
+    }'
+    validate_certs: no
+    timeout: 30
+  register: api_response
+  failed_when: api_response.status not in [200]
+
+- set_fact:
+    access_token: "{{ api_response.json.access_token }}"
+    refresh_token: "{{ api_response.json.refresh_token }}"
+
+- ansible.builtin.set_fact:
+    tokens:
+      access_token: "{{ access_token }}"
+      refresh_token: "{{ refresh_token }}"
+
+- name: Display success message
+  debug:
+    msg: |
+      Tokens are created successfully.

@@ -1,0 +1,10 @@
+
+- name: Getting Started
+  hosts: localhost
+  tasks:
+    # Authenticate to Padas Engine
+    - name: Get tokens for Padas Engine
+      include_tasks: ../roles/padas-engine/tasks/get_tokens.yml
+    # Create the toppics required by the quick start
+    - name: Create Topics
+      include_tasks: ../roles/padas-engine/tasks/create_topics.yml

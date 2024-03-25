@@ -1,0 +1,18 @@
+- name: Include variables from kafka role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Stop Kafka Contoller 
+  debug:
+    msg: "Stopping Kafka Contoller..."
+
+- name: Execute command to stop Kafka Contoller
+  shell: "nohup {{ kafka_path }}/bin/kafka-server-stop {{ kafka_path }}/etc/kafka/kraft/contoller.properties > /dev/null 2>&1 &"
+
+- name: Display success message Kafka Contoller is stopped
+  debug:
+    msg: |
+      Kafka Contoller is stoped.
+      The task completed successfully.
+
+

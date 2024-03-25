@@ -1,17 +1,31 @@
-- name: Stop Padas Engine and Padas UI services
-  hosts: padas
+- name: Stop Kafka Controller 
+  hosts: kafka-controller
   tasks:
-    - name: Include stop tasks for Kafka Controller and Broker
+    - name: Include stop task for Kafka Controller
       include_role:
         name: roles/kafka
-        tasks_from: stop.yml
+        tasks_from: stop-controller.yml
+
+- name: Stop Kafka Broker 
+  hosts: kafka-broker
+  tasks:
+    - name: Include stop task for Kafka Broker
+      include_role:
+        name: roles/kafka
+        tasks_from: stop-broker.yml
         
+- name: Stop Padas Engine services
+  hosts: padas-engine
+  tasks:
     - name: Include stop tasks for Padas Engine
       include_role:
         name: roles/padas-engine
         tasks_from: stop.yml
 
+- name: Stop Padas UI services
+  hosts: padas-ui
+  tasks:
     - name: Include stop tasks for Padas UI
       include_role:
         name: roles/padas-ui
-        tasks_from: stop.yml  
+        tasks_from: stop.yml

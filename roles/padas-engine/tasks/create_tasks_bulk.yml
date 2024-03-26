@@ -1,0 +1,23 @@
+- name: Perform API call to bulk create tasks
+  uri:
+    url: "https://{{ groups['padas-engine'][0] }}:8999/api/bulk/tasks"
+    method: POST
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ access_token }}"
+    body: "{{ lookup('file','../vars/PadasQuickStartTasks.json') }}"
+    body_format: json
+    validate_certs: no
+  register: api_response_1
+  failed_when: api_response.status not in [200]
+
+- name: Display response
+  debug:
+    var: api_response_1
+
+- name: Display success message
+  debug:
+    msg: |
+      {% for task in api_response_1.json %}
+      Task: {{ task.name }} is created successfully.
+      {% endfor %}

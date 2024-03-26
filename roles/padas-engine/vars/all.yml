@@ -1,2 +1,28 @@
 padas_engine_path: "/opt/padas"
 jps_padas: "padas-"
+
+host: "{{ groups['padas-engine'][0] }}"
+create_post: "POST"
+create_status: [200]
+
+##### Bulk Create #####
+# Create Rules
+create_rules_bulk: "/api/bulk/rules"
+body_rules_bulk: "PadasQuickStartRules.json"
+
+# Create Tasks
+create_tasks_bulk: "/api/bulk/tasks"
+body_tasks_bulk: "PadasQuickStartTasks.json"
+
+# Create Pipelines
+create_pipelines_bulk: "/api/bulk/pipelines"
+body_pipelines_bulk: "PadasQuickStartPipelines.json"
+
+# Create Topologies
+create_topologies_bulk: "/api/bulk/topologies"
+body_topologies_bulk: "PadasQuickStartTopologies.json"
+
+
+
+
+

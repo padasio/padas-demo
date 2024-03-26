@@ -1,0 +1,22 @@
+- name: Include variables from padas-engine role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Perform API call to bulk create topologies
+  include_tasks: request.yml
+  vars: 
+    endpoint: "{{create_topologies_bulk}}"
+    api_method: "{{create_post}}"
+    file_name: "{{body_topologies_bulk}}"
+    api_expected_statuses: "{{create_status}}"
+
+- name: Display response
+  debug:
+    var: api_response
+
+- name: Display success message
+  debug:
+    msg: |
+      {% for topology in api_response.json %}
+      Pipeline: {{ topology.name }} is created successfully.
+      {% endfor %}

@@ -1,0 +1,12 @@
+- name: Perform API request
+  uri:
+    url: "https://{{ groups['padas-engine'][0] }}:8999{{ endpoint }}"
+    method: "{{ api_method }}"
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ access_token }}"
+    body: "{{ lookup('file', '../vars/' + file_name) }}"
+    body_format: json
+    validate_certs: no
+  register: api_response
+  failed_when: api_response.status not in api_expected_statuses

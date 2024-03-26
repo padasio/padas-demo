@@ -1,0 +1,22 @@
+- name: Include variables from padas-engine role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Perform API call to bulk create rules
+  include_tasks: request.yml
+  vars:
+    endpoint: "{{create_rules_bulk}}"
+    api_method: "{{create_post}}"
+    file_name: "{{ body_rules_bulk }}"
+    api_expected_statuses: "{{create_status}}"
+
+- name: Display response
+  debug:
+    var: api_response
+
+- name: Display success message
+  debug:
+    msg: |
+      {% for rule in api_response.json %}
+      Rule: {{ rule.name }} is created successfully.
+      {% endfor %}

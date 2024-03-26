@@ -16,23 +16,40 @@
 │           └── padas-ui.yml
 ├── playbooks
 │   ├── getting-started.yml
+│           ├── padas-engine.yml
+│           └── padas-ui.yml
+├── playbooks
+│   ├── getting-started.yml
 │   ├── start-services.yml
-│   └── stop-services.yml
+│   ├── stop-services.yml
+│   └── test.yml
 └── roles
-    ├── common
     ├── kafka
-    │   ├── handlers
     │   ├── tasks
+    │   │   ├── start-broker.yml
+    │   │   ├── start-controller.yml
+    │   │   ├── stop-broker.yml
+    │   │   └── stop-controller.yml
     │   └── vars
+    │       └── all.yml
     ├── padas-engine
-    │   ├── handlers
     │   ├── tasks
+    │   │   ├── create_pipeline_bulk.yml
+    │   │   ├── create_rules_bulk.yml
+    │   │   ├── create_tasks_bulk.yml
+    │   │   ├── create_topics.yml
+    │   │   ├── create_topologies_bulk.yml
+    │   │   ├── get_tokens.yml
+    │   │   ├── request.yml
     │   │   ├── start.yml
     │   │   └── stop.yml
     │   └── vars
+    │       ├── PadasQuickStartPipelines.json
+    │       ├── PadasQuickStartRules.json
+    │       ├── PadasQuickStartTasks.json
+    │       ├── PadasQuickStartTopologies.json
     │       └── all.yml
     └── padas-ui
-        ├── handlers
         ├── tasks
         │   ├── start.yml
         │   └── stop.yml
@@ -43,4 +60,5 @@
 Testing on localhost:
 
 ansible-playbook --connection=local -i inventories/production/group_vars/all.yml  playbooks/start-services.yml
+ansible-playbook --connection=local -i inventories/production/group_vars/all.yml  playbooks/getting-started.yml
 ansible-playbook --connection=local -i inventories/production/group_vars/all.yml  playbooks/stop-services.yml

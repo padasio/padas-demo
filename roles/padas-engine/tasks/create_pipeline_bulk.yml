@@ -1,0 +1,22 @@
+- name: Include variables from padas-engine role
+  include_vars:
+    file: ../vars/all.yml
+
+- name: Perform API call to bulk create pipelines
+  include_tasks: request.yml
+  vars: 
+    endpoint: "{{create_pipelines_bulk}}"
+    api_method: "{{create_post}}"
+    file_name: "{{body_pipelines_bulk}}"
+    api_expected_statuses: "{{create_status}}"
+
+- name: Display response
+  debug:
+    var: api_response
+
+- name: Display success message
+  debug:
+    msg: |
+      {% for pipeline in api_response.json %}
+      Pipeline: {{ pipeline.name }} is created successfully.
+      {% endfor %}

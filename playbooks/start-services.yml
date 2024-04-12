@@ -29,3 +29,10 @@
       include_role:
         name: roles/padas-ui
         tasks_from: start.yml
+
+- name: Wait for services to start
+  hosts: localhost
+  tasks:
+    - name: Pause for 30 seconds
+      pause:
+        seconds: 30

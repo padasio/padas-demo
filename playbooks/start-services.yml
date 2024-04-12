@@ -33,6 +33,6 @@
 - name: Wait for services to start
   hosts: localhost
   tasks:
-    - name: Pause for 30 seconds
+    - name: Wait for 15 seconds for services to start
       pause:
-        seconds: 30
+        seconds: 15

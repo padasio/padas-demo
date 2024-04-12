@@ -54,4 +54,4 @@
 
 Testing on localhost:
 
-ansible-playbook --connection=local -i inventories/production/group_vars/all.yml  playbooks/getting-started.yml
+ansible-playbook --connection=local -i inventories/production/group_vars/all.yml  playbooks/quick-start.yml

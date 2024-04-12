@@ -1,7 +1,7 @@
 - name: Start Services
   import_playbook: start-services.yml
 
-- name: Getting Started
+- name: Quick Start
   hosts: localhost
   tasks:
     # Authenticate to Padas Engine

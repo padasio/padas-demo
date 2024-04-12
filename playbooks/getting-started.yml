@@ -1,3 +1,5 @@
+- name: Start Services
+  import_playbook: start-services.yml
 
 - name: Getting Started
   hosts: localhost
@@ -19,4 +21,7 @@
       include_tasks: ../roles/padas-engine/tasks/create_pipeline_bulk.yml
     # Create the topologies required by the quick start
     - name: Bulk Create Topologies
-      include_tasks: ../roles/padas-engine/tasks/create_pipeline_bulk.yml
+      include_tasks: ../roles/padas-engine/tasks/create_topologies_bulk.yml
+
+- name: Stop Services
+  import_playbook: stop-services.yml

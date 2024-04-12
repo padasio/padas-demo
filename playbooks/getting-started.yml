@@ -22,6 +22,15 @@
     # Create the topologies required by the quick start
     - name: Bulk Create Topologies
       include_tasks: ../roles/padas-engine/tasks/create_topologies_bulk.yml
+    # Restart Padas Engine for enabling topologies
+    - name: Stop Padas Engine
+      include_tasks: ../roles/padas-engine/tasks/stop.yml
+    - name: Start Padas Engine
+      include_tasks: ../roles/padas-engine/tasks/start.yml
 
-- name: Stop Services
-  import_playbook: stop-services.yml
+- name: Wait for Padas Engine to start
+  hosts: localhost
+  tasks:
+    - name: Wait for 10 seconds for Padas Engine to start
+      pause:
+        seconds: 10

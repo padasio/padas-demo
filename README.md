@@ -15,7 +15,7 @@
 │           ├── padas-engine.yml
 │           └── padas-ui.yml
 ├── playbooks
-│   ├── getting-started.yml
+│   ├── quick-start.yml
 │   ├── start-services.yml
 │   └── stop-services.yml
 └── roles

@@ -1,19 +1,18 @@
 [padas-engine]
-192.168.1.6
+localhost
 
 [padas-ui]
-192.168.1.6
+localhost
 
 [padas:children]
 padas-engine
 padas-ui
 
 [kafka-controller]
-192.168.1.6
+localhost
 
 [kafka-broker]
-192.168.1.6
-
+localhost
 
 [kafka:children]
 kafka-controller
